@@ -10,6 +10,7 @@ import json
 
 import connect_db
 from mongoengine import Document
+from db_schema import Tweet
 
 consumer_key = 'So62vN1g4kNaNTPhv79yWLoU1'
 consumer_secret = 'blzEA9UaMpaczTL5HD3EqReKOSBGfdZXUIC00nP8POjMwtezj3'
@@ -29,11 +30,12 @@ class StdOutListener(tweepy.StreamListener):
         else:
             text = decoded['text']
         data = {
-            str(decoded['id'])  : text
+            'tweet_id'  : str(decoded['id']),
+            'text': text
         }
 
-        print(data)
-        
+        Tweet(tweet_id=data['tweet_id'], text=data['text']).save()
+        print(f"Stored tweet {data['tweet_id']}")
         return True
 
     def on_error(self, status):
