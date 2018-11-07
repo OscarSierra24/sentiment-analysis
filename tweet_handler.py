@@ -8,10 +8,13 @@ Created on Wed Nov  7 09:39:11 2018
 import tweepy
 import json
 
+import connect_db
+from mongoengine import Document
+
 consumer_key = 'So62vN1g4kNaNTPhv79yWLoU1'
 consumer_secret = 'blzEA9UaMpaczTL5HD3EqReKOSBGfdZXUIC00nP8POjMwtezj3'
-access_token = '720704846135857152-INYIXn3M9mHrMU2uHQhs3D7nE4Lc5HA'
-access_secret = 'TV1jg6lBs3bmUnwaBkMA2MEl1pZzFdQkTCvir3vD9P2P9'
+access_token = '720704846135857152-hhGcmCCst5jag6GznKJw6zEwanItklv'
+access_secret = 'UJnFf8EzQPJ4BNyB0jz5jvAomsufqMLKhbxF0T0gAwQAQ'
 
 # This is the listener, resposible for receiving data
 class StdOutListener(tweepy.StreamListener):
