@@ -9,6 +9,7 @@ mongoengine = "*"
 setuptools = "*"
 python-dotenv = "*"
 pipenv = "*"
+nltk = "*"
 
 [dev-packages]
 
