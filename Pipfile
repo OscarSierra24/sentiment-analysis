@@ -8,6 +8,7 @@ tweepy = "*"
 mongoengine = "*"
 setuptools = "*"
 python-dotenv = "*"
+pipenv = "*"
 
 [dev-packages]
 
