@@ -5,7 +5,6 @@ import os
 
 user       = os.environ['DB_USER']
 password   = os.environ['DB_PASS']
-
 uri        = f'mongodb://{user}:{password}@ds155213.mlab.com:55213/tweet-analysis'
 
 #Database connection
