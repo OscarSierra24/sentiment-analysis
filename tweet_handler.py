@@ -52,8 +52,6 @@ class StdOutListener(tweepy.StreamListener):
         print (status)
 
 if __name__ == '__main__':
-    #init of words filter
-    
     #stdOutListener
     l = StdOutListener()
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
