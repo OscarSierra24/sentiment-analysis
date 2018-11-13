@@ -8,7 +8,7 @@ Created on Wed Nov  7 10:26:46 2018
 
 import re
 from Levenshtein import distance
-from nltk import word_tokenize
+from nltk import TweetTokenizer
 
 class Words_filter:
     def __init__(self):
@@ -40,8 +40,10 @@ class Words_filter:
     
     def filter(self, string):
         result = "" 
-        for word in string.split():
-        #for word in word_tokenize(string):#filter(None, re.split("[., \-!?:]+", string)):
+        for word in TweetTokenizer().tokenize(string):
+            if len(word) < 1:
+                result+=word
+            #for word in word_tokenize(string):#filter(None, re.split("[., \-!?:]+", string)):
             #if its # or @  
             #print("word:", word)
             if len(word) >= 1:
@@ -52,31 +54,26 @@ class Words_filter:
                         #separate
                         if char == "#":
                             pass
-                        elif char.isupper():
-                            aux+=" "
-                            
+                        elif char.isupper():#perroAs
                             #if its in the english dictionary
-                            if word.lower() in self.english_dict:
-                                result+= word.lower()
+                            if aux in self.english_dict:
+                                result+= " " + aux
                                 
                             #if its part of the twitter slang
-                            elif word.lower() in self.twitter_dict:
-                                result+=self.twitter_dict[word.lower()]          
+                            elif aux in self.twitter_dict:
+                                result+=" " + self.twitter_dict[aux]          
                             #if, by discarting we concluded that the word could be misspelled, then apply a levenshtein distance:
                             else:   
                                 if len(word) > 3:
-                                    result+=self.get_correction(word)
+                                    result+=" " + self.get_correction(word)
                                 else:
-                                    result+=word
-                            
-                            aux+=char.lower()
-                        
-                        elif char == "_":
-                            aux+=" "
+                                    result+=" " + word
+
+                            aux=char.lower()
                         
                         else:
                             aux+=char.lower()
-                    word = aux
+                    word = aux        
                 
                 #if its a name keep it that way
                 elif word[0] == "@":
@@ -107,9 +104,8 @@ class Words_filter:
         return result
         
 if __name__=="__main__":
-    string = "RT @AllenWest: ICYMI: It is true, there is still a GOP held Senate, but you can expect shenanigans and a kabuki theater of the utterly"
+    string = "RT @RRN3: Well if THIS doesn't say everything then nothing does."
     words_filter = Words_filter()
-    print(words_filter.get_correction(string))
     print(words_filter.filter(string))
     '''
     WordsFilter = Words_filter()
