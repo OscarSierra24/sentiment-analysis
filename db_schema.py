@@ -3,12 +3,10 @@ from mongoengine import Document, StringField,\
                         DateTimeField, DecimalField,\
                         ObjectIdField, BooleanField, EmbeddedDocumentListField,\
                         EmbeddedDocument,PointField
-
-import connect_db
-
+from datetime import datetime
 class Tweet(Document):
-    tweet_id  = StringField(required=True)
+    tweet_id = StringField(required=True)
     text     = StringField(required=True)
     analyzed = BooleanField(default=False)
-
-Tweet(tweet_id='123',text='Wuddup').save()
+    retrieved= DateTimeField(default=datetime.now)
+    topic    = StringField(required=True)
