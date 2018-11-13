@@ -1,16 +1,18 @@
-Created temporary directory: /tmp/pip-ephem-wheel-cache-buyv_mkc
-Created temporary directory: /tmp/pip-req-tracker-tob1umwg
-Created requirements tracker '/tmp/pip-req-tracker-tob1umwg'
-Created temporary directory: /tmp/pip-install-3e68xnqg
-Cleaning up...
-Removed build tracker '/tmp/pip-req-tracker-tob1umwg'
-ERROR: You must give at least one requirement to install (see "pip help install")
-Exception information:
-Traceback (most recent call last):
-  File "/home/oscar/anaconda3/lib/python3.7/site-packages/pip/_internal/cli/base_command.py", line 143, in main
-    status = self.run(options, args)
-  File "/home/oscar/anaconda3/lib/python3.7/site-packages/pip/_internal/commands/install.py", line 293, in run
-    self.name, wheel_cache
-  File "/home/oscar/anaconda3/lib/python3.7/site-packages/pip/_internal/cli/base_command.py", line 252, in populate_requirement_set
-    '(see "pip help %(name)s")' % opts)
-pip._internal.exceptions.CommandError: You must give at least one requirement to install (see "pip help install")
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+tweepy = "*"
+mongoengine = "*"
+setuptools = "*"
+python-dotenv = "*"
+pipenv = "*"
+nltk = "*"
+python-levenshtein = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.6"
