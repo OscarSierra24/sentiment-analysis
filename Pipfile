@@ -4,8 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+tweepy = "*"
+mongoengine = "*"
+setuptools = "*"
+python-dotenv = "*"
+pipenv = "*"
+nltk = "*"
+flask = "*"
 
 [dev-packages]
+pylint = "*"
 
 [requires]
 python_version = "3.6"
