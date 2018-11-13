@@ -100,14 +100,12 @@ class Words_filter:
                     result+=" " + self.get_correction(word)
                 else:
                     result+=" " + word
-            print("resu is:", result)
-            
         return result
         
-if __name__=="__main__":
-    string = "I left my backpacc at jome"
-    words_filter = Words_filter()
-    print(words_filter.filter(string))
+#if __name__=="__main__":
+#    string = "I left my backpacc at jome"
+#    words_filter = Words_filter()
+#    print(words_filter.filter(string))
     '''
     WordsFilter = Words_filter()
     text = "'text': RT @RRN3: Well if THIS doesn't say everything then nothing does.\n#blacklivesmatter\n#CountEveryVote\n#EveryVoteCounts\n#MLK #BLM #ElectionResu\u2026"

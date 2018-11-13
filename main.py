@@ -11,6 +11,7 @@ import os
 import connect_db
 from mongoengine import Document
 from db_schema import Tweet
+from words_filter import Words_filter
 
 CONSUMER_KEY = os.environ['CONSUMER_KEY']#'So62vN1g4kNaNTPhv79yWLoU1'
 CONSUMER_SECRET = os.environ['CONSUMER_SECRET']#'blzEA9UaMpaczTL5HD3EqReKOSBGfdZXUIC00nP8POjMwtezj3'
@@ -35,6 +36,8 @@ def get_trends(api):
     return names
 
 if __name__ == '__main__':
+    wf = Words_filter()
+    
     #l = StdOutListener()
     auth = auth(
     CONSUMER_KEY,
@@ -58,7 +61,7 @@ if __name__ == '__main__':
                 else:
                     text = decoded['text']
             else:
-                text = decoded['text']
+                text = wf.filter(decoded['text'])
             data = {
                 'tweet_id'  : str(decoded['id']),
                 'text': text
@@ -70,4 +73,3 @@ if __name__ == '__main__':
             display_text = "".join(data['text'].split()[2:])[:20]
             print(f"Stored tweet {data['tweet_id']} | {display_text}")
             count+=1
-    
