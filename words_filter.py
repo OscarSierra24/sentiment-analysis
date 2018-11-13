@@ -8,6 +8,7 @@ Created on Wed Nov  7 10:26:46 2018
 
 import re
 from Levenshtein import distance
+from nltk import word_tokenize
 
 class Words_filter:
     def __init__(self):
@@ -39,7 +40,8 @@ class Words_filter:
     
     def filter(self, string):
         result = "" 
-        for word in string.split():#filter(None, re.split("[., \-!?:]+", string)):
+        for word in string.split():
+        #for word in word_tokenize(string):#filter(None, re.split("[., \-!?:]+", string)):
             #if its # or @  
             #print("word:", word)
             if len(word) >= 1:
@@ -104,11 +106,13 @@ class Words_filter:
             result+=" "
         return result
         
-#string = "RT @AllenWest: ICYMI: It is true, there is still a GOP held Senate, but you can expect shenanigans and a kabuki theater of the utterly"
-#words_filter = Words_filter()
-#print(words_filter.get_correction(string))
-#print(words_filter.filter(string))
-
-#WordsFilter = Words_filter()
-#text = "'text': RT @RRN3: Well if THIS doesn't say everything then nothing does.\n#blacklivesmatter\n#CountEveryVote\n#EveryVoteCounts\n#MLK #BLM #ElectionResu\u2026"
-#print(text)
+if __name__=="__main__":
+    string = "RT @AllenWest: ICYMI: It is true, there is still a GOP held Senate, but you can expect shenanigans and a kabuki theater of the utterly"
+    words_filter = Words_filter()
+    print(words_filter.get_correction(string))
+    print(words_filter.filter(string))
+    '''
+    WordsFilter = Words_filter()
+    text = "'text': RT @RRN3: Well if THIS doesn't say everything then nothing does.\n#blacklivesmatter\n#CountEveryVote\n#EveryVoteCounts\n#MLK #BLM #ElectionResu\u2026"
+    print(text)
+    '''
