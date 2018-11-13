@@ -104,11 +104,12 @@ class Words_filter:
             result+=" "
         return result
         
-#string = "RT @AllenWest: ICYMI: It is true, there is still a GOP held Senate, but you can expect shenanigans and a kabuki theater of the utterly"
-#words_filter = Words_filter()
-#print(words_filter.get_correction(string))
-#print(words_filter.filter(string))
+if __name__=="__main__":
+    string = "RT @AllenWest: ICYMI: It is true, there is still a GOP held Senate, but you can expect shenanigans and a kabuki theater of the utterly"
+    words_filter = Words_filter()
+    print(words_filter.get_correction(string))
+    print(words_filter.filter(string))
 
-#WordsFilter = Words_filter()
-#text = "'text': RT @RRN3: Well if THIS doesn't say everything then nothing does.\n#blacklivesmatter\n#CountEveryVote\n#EveryVoteCounts\n#MLK #BLM #ElectionResu\u2026"
-#print(text)
+    WordsFilter = Words_filter()
+    text = "'text': RT @RRN3: Well if THIS doesn't say everything then nothing does.\n#blacklivesmatter\n#CountEveryVote\n#EveryVoteCounts\n#MLK #BLM #ElectionResu\u2026"
+    print(text)
