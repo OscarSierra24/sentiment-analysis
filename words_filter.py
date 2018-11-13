@@ -6,7 +6,6 @@ Created on Wed Nov  7 10:26:46 2018
 @author: oscar
 """
 
-import re
 from Levenshtein import distance
 from nltk import TweetTokenizer
 
@@ -41,8 +40,9 @@ class Words_filter:
     def filter(self, string):
         result = "" 
         for word in TweetTokenizer().tokenize(string):
-            if len(word) < 1:
+            if len(word) <= 1:
                 result+=word
+                continue
             #for word in word_tokenize(string):#filter(None, re.split("[., \-!?:]+", string)):
             #if its # or @  
             #print("word:", word)
@@ -77,34 +77,35 @@ class Words_filter:
                 
                 #if its a name keep it that way
                 elif word[0] == "@":
-                    result+=word+" "
+                    result+=" "+ word
                     continue
 
             #if word is a website link:
             if len(word) >= 5 and word[0:5] == "https":
-                result+=word+" "
+                result+=" " + word
                 continue
                 
 
             #if its in the english dictionary
             if word.lower() in self.english_dict:
-                result+= word.lower()
+                result+= " " + word.lower()
                 
                 
             #if its part of the twitter slang
             elif word.lower() in self.twitter_dict:
-                result+=self.twitter_dict[word.lower()]          
+                result+=" " + self.twitter_dict[word.lower()]          
             #if, by discarting we concluded that the word could be misspelled, then apply a levenshtein distance:
             else:
                 if len(word) > 3:
-                    result+=self.get_correction(word)
+                    result+=" " + self.get_correction(word)
                 else:
-                    result+=word
-            result+=" "
+                    result+=" " + word
+            print("resu is:", result)
+            
         return result
         
 if __name__=="__main__":
-    string = "RT @RRN3: Well if THIS doesn't say everything then nothing does."
+    string = "I left my backpacc at jome"
     words_filter = Words_filter()
     print(words_filter.filter(string))
     '''
