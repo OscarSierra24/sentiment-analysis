@@ -76,4 +76,8 @@ if __name__ == '__main__':
 
         tmp_tweets = sentiment(tmp_tweets)
         for data in tmp_tweets:
-            Tweet(**data).save()
+            if len(Tweet.objects(tweet_id=data['tweet_id'])) > 0:
+                print('Tweet already in database')
+            else:
+                print(f"Stored tweet {data['tweet_id']} | {data['text']}")
+                Tweet(**data).save()
