@@ -43,6 +43,9 @@ class Words_filter:
             if len(word) <= 1:
                 result+=word
                 continue
+            if word[0].isupper():
+                result+=' '+word
+                continue
             #for word in word_tokenize(string):#filter(None, re.split("[., \-!?:]+", string)):
             #if its # or @  
             #print("word:", word)
@@ -102,10 +105,10 @@ class Words_filter:
                     result+=" " + word
         return result
         
-#if __name__=="__main__":
-#    string = "I left my backpacc at jome"
-#    words_filter = Words_filter()
-#    print(words_filter.filter(string))
+if __name__=="__main__":
+    string = "I left my backpacc at quirino's jome"
+    words_filter = Words_filter()
+    print(words_filter.filter(string))
     '''
     WordsFilter = Words_filter()
     text = "'text': RT @RRN3: Well if THIS doesn't say everything then nothing does.\n#blacklivesmatter\n#CountEveryVote\n#EveryVoteCounts\n#MLK #BLM #ElectionResu\u2026"
