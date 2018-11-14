@@ -7,6 +7,7 @@ from datetime import datetime
 class Tweet(Document):
     tweet_id = StringField(required=True)
     text     = StringField(required=True)
-    analyzed = BooleanField(default=False)
+    analyzed = BooleanField(default=True)
+    sentiment= DecimalField(required=True)
     retrieved= DateTimeField(default=datetime.now)
     topic    = StringField(required=True)

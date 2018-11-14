@@ -12,6 +12,7 @@ import connect_db
 from mongoengine import Document
 from db_schema import Tweet
 from words_filter import Words_filter
+from sentiment_azure import sentiment
 
 CONSUMER_KEY = os.environ['CONSUMER_KEY']#'So62vN1g4kNaNTPhv79yWLoU1'
 CONSUMER_SECRET = os.environ['CONSUMER_SECRET']#'blzEA9UaMpaczTL5HD3EqReKOSBGfdZXUIC00nP8POjMwtezj3'
@@ -49,8 +50,11 @@ if __name__ == '__main__':
     n = int(input("Number of tweets to get per hashtag: "))
     api  = tweepy.API(auth)
     for topic in get_trends(api):
+        print(f"Gathering {n} tweets for {topic}")
         count = 0
-        for tweet in tweepy.Cursor(api.search,q=topic,count=10,lang="en").items():
+        tmp_tweets = []
+        for tweet in tweepy.Cursor(api.search,q=topic,lang="en").items():
+            
             if count >= n:
                 break
             # Parsing 
@@ -61,15 +65,15 @@ if __name__ == '__main__':
                 else:
                     text = decoded['text']
             else:
-                text = wf.filter(decoded['text'])
+                text = decoded['text']
             data = {
                 'tweet_id'  : str(decoded['id']),
-                'text': text
+                'text': wf.filter(text),
+                'topic':topic
             }
-            Tweet(tweet_id=data['tweet_id'],
-                  text    =data['text'],
-                  topic   =topic
-            ).save()
-            display_text = "".join(data['text'].split()[2:])[:20]
-            print(f"Stored tweet {data['tweet_id']} | {display_text}")
+            tmp_tweets.append(data)
             count+=1
+
+        tmp_tweets = sentiment(tmp_tweets)
+        for data in tmp_tweets:
+            Tweet(**data).save()
