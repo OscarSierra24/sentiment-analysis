@@ -2,3 +2,4 @@
 .vscode
 env.sh
 set_env.py
+__pycache__/

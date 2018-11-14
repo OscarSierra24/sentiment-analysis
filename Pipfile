@@ -11,6 +11,10 @@ python-dotenv = "*"
 pipenv = "*"
 nltk = "*"
 flask = "*"
+matplotlib = "*"
+numpy = "*"
+sklearn = "*"
+seaborn = "*"
 
 [dev-packages]
 pylint = "*"
