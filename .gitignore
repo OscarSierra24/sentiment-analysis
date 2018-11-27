@@ -3,3 +3,6 @@
 env.sh
 set_env.py
 __pycache__/
+Notebook.ipynb
+Report/
+.ipynb_checkpoints/

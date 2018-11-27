@@ -10,12 +10,14 @@ count = {}
 data  = {}
 avg_sentiment = {}
 
+
 for tweet in Tweet.objects(retrieved__gte=date.today()):
     data[tweet.topic]  = data.get(tweet.topic,[]) + [float(tweet.sentiment)]
     count[tweet.topic] = count.get(tweet.topic, 0) + 1
 
 for key in data:
     avg_sentiment[key] = round(sum(data[key])/count[key],4)
+
 
 topic=[]
 sentiment=[]
@@ -34,9 +36,26 @@ for s in sentiment:
     else:
         colors.append('gray')
 
-#sns.scatterplot(topic,sentiment,palette=colors,alpha=0.8)
-plt.scatter(topic,sentiment,c=colors,alpha=0.8)
-plt.grid(True)
+#print(data)
+#print(topic)
+#print(sentiment)
+#print(colors)
+
+sentiment_topics = []
+for k in topic:
+    if k in data:
+        sentiment_topics.append(data[k])
+
+
+#Magic do not touch
+fig, ax = plt.subplots()
+#bp = ax.boxplot(sentiment_topics,boxprops=dict(alpha=.3),showfliers=False)
+ax.scatter(topic,sentiment,c=colors,alpha=1.0)
+
+ax.set_xlabel('Tweets')
+ax.set_ylabel('Sentiment')
+
+ax.grid(True)
 plt.xticks(rotation=90,fontsize=10)
 plt.title("Sentiment Average per Trending Topic")
 plt.show()
