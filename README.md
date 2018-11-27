@@ -38,3 +38,12 @@ This project serves to gather tweets from the most popular trending topics in tw
 ### Azure
 - AZURE_KEY
 
+# How-to Run
+
+    pipenv shell
+    sh .env
+    python main.py
+        #At this point select N of tweets to get from each Trending Topic
+    python report.py
+
+main.py will store the tweets with sentiment analysis, report will make graphs to visualize them

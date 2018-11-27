@@ -38,4 +38,5 @@ for s in sentiment:
 plt.scatter(topic,sentiment,c=colors,alpha=0.8)
 plt.grid(True)
 plt.xticks(rotation=90,fontsize=10)
+plt.title("Sentiment Average per Trending Topic")
 plt.show()
